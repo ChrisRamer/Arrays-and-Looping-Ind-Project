@@ -9,16 +9,45 @@ $(document).ready(function () {
 
 		// If input is NaN (not a number), return error
 		if (isNumber(number)) {
-			// Loop through each digit
-			for (var i = 0; i < number.length; i++) {
-				//
+			
+			const realNum = parseInt(number);
+			let output = "";
+
+			// Loops for each number up to the number given
+			for (var i = 0; i <= realNum; i++) {
+
+				if (i === realNum) {
+					output += i.toString();
+					break;
+				}
+				else {
+					output += result(i).toString() + ", ";
+				}
+
 			}
+
+			console.log(output);
+
 		}
 
 	});
 
+	// Replace certain digits with phrases
+	const result = function (digit) {
+		switch (digit) {
+			case 1:
+				return "Beep!";
+			case 2:
+				return "Boop!";
+			case 3:
+				return "Won't you be my neighbor?";
+			default:
+				return digit;
+		}
+	}
+
 	// Error handling
-	let isNumber = function showError(num) {
+	const isNumber = function showError(num) {
 		
 		// Show error
 		if (isNaN(num) || num.length < 1) {
