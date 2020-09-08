@@ -13,20 +13,25 @@ $(document).ready(function () {
 			const realNum = parseInt(number);
 			let output = "";
 
-			// Loops for each number up to the number given
-			for (var i = 0; i <= realNum; i++) {
+			// Easter egg check
+			if (!isEasterEgg(number)) {
 
-				if (i === realNum) {
-					output += result(i.toString()).toString();
-					break;
+				// Loops for each number up to the number given
+				for (var i = 0; i <= realNum; i++) {
+
+					if (i === realNum) {
+						output += result(i.toString()).toString();
+						break;
+					}
+					else {
+						output += result(i.toString()).toString() + ", ";
+					}
+
 				}
-				else {
-					output += result(i.toString()).toString() + ", ";
-				}
+
+				showOutput(output);
 
 			}
-
-			showOutput(output);
 
 		}
 
@@ -55,6 +60,39 @@ $(document).ready(function () {
 		return num;
 	}
 
+	// Easter egg
+	const isEasterEgg = function showEgg(number) {
+
+		const num = parseInt(number);
+
+		// If num is 0
+		if (number === "0") {
+			showOutput("Shower thought #1: If a 0 has no value, does that mean 100 is the same value as 1? 🤔");
+			return true;
+		}
+
+		// If num is negative 0
+		if (number === "-0") {
+			showOutput("Shower thought #2: Personally, I think -0 should petition to become a real number. There's no reason to outcast it! 🤔")
+			return true;
+		}
+
+		// If num is a negative
+		if (num < 0) {
+			showOutput("Shower thought #3: Hypothetically, if you had a negative zero, would the absolute value of that -0 be positive or negative 0? 🤔");
+			return true;
+		}
+
+		// If num is O:
+		if (Math.abs(num) === 69420 || Math.abs(num) === 42069) {
+			showOutput("Woah there, cowboy! Please keep this PG-13!! 🤠");
+			return true;
+		}
+
+		return false;
+
+	}
+
 	// Show output
 	function showOutput(finalOutput) {
 		$("#output").show();
@@ -69,9 +107,11 @@ $(document).ready(function () {
 		// Show error
 		if (isNaN(num) || num.length < 1) {
 			console.log("User did not input a number, returning null");
+			$("#output").hide();
 			$("#output-error").show();
 			$("#output-error h3").text("Please enter a valid number!");
 			$("#number").val("");
+			$("button").text("Try talking to Mr. Roboger again?");
 			return false;
 		}
 		// Hide error

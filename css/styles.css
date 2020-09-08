@@ -26,12 +26,15 @@ body {
 	display: none;
 	color: rgb(66, 177, 71);
 	font-family: Verdana;
+	border: 2px solid rgb(22, 70, 24);
+	border-radius: 25px;
 }
 
 #output-error {
 	display: none;
 	color: red;
 	font-family: Verdana;
+	border-style: groove;
 }
 
 input[type="checkbox"] {
