@@ -17,33 +17,50 @@ $(document).ready(function () {
 			for (var i = 0; i <= realNum; i++) {
 
 				if (i === realNum) {
-					output += i.toString();
+					output += result(i.toString()).toString();
 					break;
 				}
 				else {
-					output += result(i).toString() + ", ";
+					output += result(i.toString()).toString() + ", ";
 				}
 
 			}
 
-			console.log(output);
+			showOutput(output);
 
 		}
 
 	});
 
 	// Replace certain digits with phrases
-	const result = function (digit) {
-		switch (digit) {
-			case 1:
-				return "Beep!";
-			case 2:
-				return "Boop!";
-			case 3:
-				return "Won't you be my neighbor?";
-			default:
-				return digit;
+	const result = function (num) {
+
+		// Note to Daniel: Had to toss the switch here since have to evaluate string instead of int, and can't use string.includes() with a switch :(
+
+		// If num contains 3
+		if (num.includes('3')) {
+			return "Won't you be my neighbor?";
 		}
+
+		// If num contains 2
+		if (num.includes('2')) {
+			return "Boop!";
+		}
+
+		// If num contains 1
+		if (num.includes('1')) {
+			return "Beep!";
+		}
+
+		return num;
+	}
+
+	// Show output
+	function showOutput(finalOutput) {
+		$("#output").show();
+		$("#output h3").text(finalOutput);
+		$("#number").val("");
+		$("button").text("Talk to Mr. Roboger again?");
 	}
 
 	// Error handling
