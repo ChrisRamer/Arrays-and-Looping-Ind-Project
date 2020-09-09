@@ -3,7 +3,6 @@ $(document).ready(function () {
 	$("form#userInput").submit(function (e) { 
 
 		e.preventDefault();
-		console.log("User submitted response!");
 
 		const number = $("#number").val();
 
@@ -106,7 +105,6 @@ $(document).ready(function () {
 		
 		// Show error
 		if (isNaN(num) || num.length < 1) {
-			console.log("User did not input a number, returning null");
 			$("#output").hide();
 			$("#output-error").show();
 			$("#output-error h3").text("Please enter a valid number!");
